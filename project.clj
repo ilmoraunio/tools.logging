@@ -6,6 +6,8 @@
   :source-paths ["src/main/clojure"]
   :test-paths ["src/test/clojure"]
   :dependencies [[org.clojure/clojure "1.3.0"]]
+  :deploy-repositories [["releases"  {:sign-releases false :url "https://clojars.org"}]
+                        ["snapshots" {:sign-releases false :url "https://clojars.org"}]]
   :profiles {:test {:dependencies [[org.slf4j/slf4j-api "1.6.2"]
                                    [org.slf4j/slf4j-log4j12 "1.6.2"]
                                    [log4j "1.2.16"]
