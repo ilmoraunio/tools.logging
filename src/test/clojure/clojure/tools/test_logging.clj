@@ -168,17 +168,17 @@
     (let [a "foo"
           b "bar"]
       (logp :debug a b))
-    (is (= ["clojure.tools.test-logging" :debug nil "foo bar"] @log-entry))))
+    (is (= ["clojure.tools.test-logging" :debug nil "\"foo\" \"bar\""] @log-entry))))
 
 (deftest logp-msg1
   (with-test-logging [#{:debug} log-entry]
     (logp :debug "hello")
-    (is (= ["clojure.tools.test-logging" :debug nil "hello"] @log-entry))))
+    (is (= ["clojure.tools.test-logging" :debug nil "\"hello\""] @log-entry))))
 
 (deftest logp-msg2
   (with-test-logging [#{:debug} log-entry]
     (logp :debug "hello" "world")
-    (is (= ["clojure.tools.test-logging" :debug nil "hello world"]
+    (is (= ["clojure.tools.test-logging" :debug nil "\"hello\" \"world\""]
            @log-entry))))
 
 (deftest logp-ex0
@@ -192,14 +192,14 @@
   (with-test-logging [#{:debug} log-entry]
     (let [e (Exception.)]
       (logp :debug e "hello")
-      (is (= ["clojure.tools.test-logging" :debug e "hello"]
+      (is (= ["clojure.tools.test-logging" :debug e "\"hello\""]
              @log-entry)))))
 
 (deftest logp-ex2
   (with-test-logging [#{:debug} log-entry]
     (let [e (Exception.)]
       (logp :debug e "hello" "world")
-      (is (= ["clojure.tools.test-logging" :debug e "hello world"]
+      (is (= ["clojure.tools.test-logging" :debug e "\"hello\" \"world\""]
              @log-entry)))))
 
 (deftest logf-msg-no-optimize
@@ -321,7 +321,7 @@
 (deftest println-style
   (are [f kw] (with-test-logging [all-levels log-entry]
                 (f "hello" "world")
-                (= ["clojure.tools.test-logging" kw nil "hello world"]
+                (= ["clojure.tools.test-logging" kw nil "\"hello\" \"world\""]
                    @log-entry))
     trace :trace
     debug :debug
@@ -334,7 +334,7 @@
   (let [e (Exception.)]
     (are [f kw] (with-test-logging [all-levels log-entry]
                   (f e "hello" "world")
-                  (= ["clojure.tools.test-logging" kw e "hello world"]
+                  (= ["clojure.tools.test-logging" kw e "\"hello\" \"world\""]
                      @log-entry))
       trace :trace
       debug :debug
