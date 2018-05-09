@@ -1,4 +1,4 @@
-(defproject org.clojars.ilmoraunio/tools.logging "0.4.1-0.0.1"
+(defproject org.clojars.ilmoraunio/tools.logging "0.4.1-0.0.2-SNAPSHOT"
   :description "Clojure logging API."
   :url "https://github.com/clojure/tools.logging"
   :license {:name "Eclipse Public License"
